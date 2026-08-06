@@ -1,8 +1,4 @@
 import { initialTasks } from './data/initialTasks.js';
-import AppHeader from './components/AppHeader.jsx';
-import SummryPanel from './components/AppHeader.jsx';
-import TaskCard from './components/AppHeader.jsx';
-import TaskList from './components/AppHeader.jsx';
 
 function App() {
   return (
