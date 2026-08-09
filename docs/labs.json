@@ -60,7 +60,7 @@
     "notes": "รัน hello.js และตรวจ environment แล้ว",
     "pageUrl": "https://jettizz1-github.github.io/engse203-student-labs-68543210002/labs/week-04/",
     "sourceUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-04/source",
-    "hasPublish": false,
-    "sourceEntries": 10
+    "hasPublish": true,
+    "sourceEntries": 12
   }
 ]
