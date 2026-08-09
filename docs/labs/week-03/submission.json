@@ -11,6 +11,6 @@
   "notes": "Static site ต้องมี index.html ที่ publish root",
   "pageUrl": "https://jettizz1-github.github.io/engse203-student-labs-68543210002/labs/week-03/",
   "sourceUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-03/source",
-  "hasPublish": false,
+  "hasPublish": true,
   "sourceEntries": 4
 }
