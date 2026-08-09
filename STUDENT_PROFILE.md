@@ -3,10 +3,10 @@
 | รายการ | ข้อมูล |
 |---|---|
 | รายวิชา | ENGSE203 การเขียนโปรแกรมสำหรับวิศวกรซอฟต์แวร์ |
-| รหัสนักศึกษา | STUDENT-ID |
-| ชื่อ-นามสกุล | ชื่อ-นามสกุล |
-| Section | SEC-X |
-| GitHub Username | GITHUB-USERNAME |
-| Repository | `engse203-student-labs-STUDENT-ID` |
-
-> ไฟล์นี้จะถูกปรับข้อมูลเมื่อรัน `npm run setup`
+| รหัสนักศึกษา | 68543210002 |
+| ชื่อ-นามสกุล | คมสันต์ ขันคำกาศ |
+| Section | SEC2 |
+| GitHub Username | jettizz1-github |
+| Repository | `engse203-student-labs-68543210002` |
+| Mode | `migration` |
+| Pages Hub | https://jettizz1-github.github.io/engse203-student-labs-68543210002/ |
