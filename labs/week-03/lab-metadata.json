@@ -7,6 +7,6 @@
   "originalCommit": "week-03",
   "pullRequestUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/pull/4",
   "submissionTag": "lab-03-submission-v1",
-  "testStatus": "not-tested",
+  "testStatus": "pass",
   "notes": "Static site ต้องมี index.html ที่ publish root"
 }
