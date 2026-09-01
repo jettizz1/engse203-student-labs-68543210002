@@ -1,0 +1,16 @@
+{
+  "week": "week-05",
+  "title": "react-mini-app",
+  "status": "ready",
+  "sourceOrigin": "https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-05/lab05/starter/src",
+  "originalRepoUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-05/lab05/starter",
+  "originalCommit": "",
+  "pullRequestUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/pull/5",
+  "submissionTag": "lab-05-submission-v1",
+  "testStatus": "pass",
+  "notes": "ส่งงาน LAB05 ครบทุก Checkpoint (5A/5B) ผ่านการทดสอบ UI, LocalStorage persistence และ Data Recovery เรียบร้อยแล้ว",
+  "pageUrl": "https://jettizz1.github.io/engse203-student-labs-68543210002/labs/week-05/",
+  "sourceUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-05/starter/src",
+  "hasPublish": true,
+  "sourceEntries": 20
+}
