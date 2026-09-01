@@ -58,14 +58,28 @@ export function readStoredRequests() {
 
   try {
     const envelope = JSON.parse(rawValue);
-    // TODO 5B-A2: ตรวจ schemaVersion และ validateRequests ให้ครบใน CP04b
+
+    // 1. ตรวจสอบว่า envelope เป็น Object หรือไม่
+    if (!envelope || typeof envelope !== 'object') {
+      return { status: 'invalid', reason: 'ข้อมูลที่บันทึกไว้ไม่ใช่ object' };
+    }
+
+    // 2. ตรวจสอบ schemaVersion ให้ตรงกับเวอร์ชันปัจจุบัน
+    if (envelope.schemaVersion !== SCHEMA_VERSION) {
+      return { status: 'invalid', reason: 'schemaVersion ไม่ตรงกับเวอร์ชันปัจจุบัน' };
+    }
+
+    // 3. ตรวจสอบ requests ผ่าน validateRequests() (ฟังก์ชันนี้จะดักจับโครงสร้างและ ID ซ้ำให้ทันที)
+    if (!validateRequests(envelope.requests)) {
+      return { status: 'invalid', reason: 'ข้อมูลคำร้องไม่ถูกต้องตาม schema หรือมี ID ซ้ำ' };
+    }
+
+    // 4. เมื่อผ่านเงื่อนไขครบทุกข้อ จึงคืนค่า valid
     return { status: 'valid', requests: structuredClone(envelope.requests) };
   } catch {
     return { status: 'invalid', reason: 'ข้อมูลที่บันทึกไว้ไม่ใช่ JSON ที่อ่านได้' };
   }
 }
-
-  //throw new Error('TODO 5B-A: readStoredRequests');
 
 /**
  * TODO 5B-B · เขียนข้อมูลลงที่เก็บ
@@ -76,21 +90,16 @@ export function readStoredRequests() {
  *   3. อย่าลืมว่าที่เก็บรับได้แต่ข้อความ
  */
 export function writeStoredRequests(requests) {
-  
   if (!validateRequests(requests)) {
     throw new Error('ไม่สามารถบันทึกข้อมูลคำร้องที่ไม่ตรง schema ได้');
   }
 
-  //setItem(object);
   localStorage.setItem(STORAGE_KEY, JSON.stringify({
     schemaVersion: SCHEMA_VERSION,
     updatedAt: new Date().toISOString(),
     requests: structuredClone(requests),
   }));
 }
-
- //throw new Error('TODO 5B-B: writeStoredRequests');
-
 
 /**
  * ให้มาแล้ว — สังเกตว่าใช้ removeItem ไม่ใช่ clear()
