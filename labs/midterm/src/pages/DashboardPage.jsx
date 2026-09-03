@@ -6,9 +6,7 @@ import LoadingState from '../components/LoadingState.jsx';
 import RequestList from '../components/RequestList.jsx';
 import SummaryPanel from '../components/SummaryPanel.jsx';
 import useManualReload from '../hooks/useManualReload.js';
-import {
-  deleteRequest, getRequests, resetRequests, updateRequestStatus,
-} from '../services/requestService.js';
+import { deleteRequest, getRequests, resetRequests, updateRequestStatus } from '../services/requestService.js';
 
 function DashboardPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -17,8 +15,6 @@ function DashboardPage() {
   const [loadState, setLoadState] = useState('idle');
   const [requests, setRequests] = useState([]);
   const [statusFilter, setStatusFilter] = useState('all');
-  // TODO B2: เพิ่ม state สำหรับข้อความค้นหา ที่นี่
-  // บรรทัดแถวๆ 21 ใน DashboardPage.jsx
   const [searchText, setSearchText] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [notice, setNotice] = useState('');
@@ -45,7 +41,6 @@ function DashboardPage() {
     return () => { ignore = true; };
   }, [scenario, reloadKey]);
 
-  // ✅ แก้บั๊กข้อ 2: แก้ completed ให้เช็ก 'completed' และใส่ [requests] ใน Dependency Array
   const summary = useMemo(() => ({
     total: requests.length,
     pending: requests.filter((request) => request.status === 'pending').length,
@@ -53,28 +48,33 @@ function DashboardPage() {
     completed: requests.filter((request) => request.status === 'completed').length,
   }), [requests]);
 
-  // ✅ แก้บั๊กข้อ 3: เปลี่ยนจาก 'pending' เป็น statusFilter
-  const filteredRequests = statusFilter === 'all'
-    ? requests
-    : requests.filter((request) => request.status === statusFilter);
+  const filteredRequests = requests.filter((request) => {
+    const matchesStatus = statusFilter === 'all' || request.status === statusFilter;
+    const query = searchText.toLowerCase().trim();
+    const matchesSearch =
+      !query ||
+      (request.title && request.title.toLowerCase().includes(query)) ||
+      (request.requestType && request.requestType.toLowerCase().includes(query)) ||
+      (request.location && request.location.toLowerCase().includes(query));
+
+    return matchesStatus && matchesSearch;
+  });
+
+  // 🟢 1. เติม handleRetry ที่นี่
   function handleRetry() {
     if (scenario) setSearchParams({});
     else reload();
   }
 
   async function handleDelete(requestId) {
-  try {
-    deleteRequest(requestId); // เรียกใช้ service ลบข้อมูลใน storage
-    
-    // ✅ อัปเดต state ของ React ให้เหลือเฉพาะรายการที่ไม่ใช่ id ตัวที่โดนลบ
-    setRequests((prevRequests) => prevRequests.filter((req) => req.id !== requestId));
-    
-    setNotice(`ลบคำร้อง ${requestId} แล้ว`);
-  } catch (error) {
-    setNotice(error instanceof Error ? error.message : 'ลบคำร้องไม่สำเร็จ');
+    try {
+      deleteRequest(requestId);
+      setRequests((prevRequests) => prevRequests.filter((req) => req.id !== requestId));
+      setNotice(`ลบคำร้อง ${requestId} แล้ว`);
+    } catch (error) {
+      setNotice(error instanceof Error ? error.message : 'ลบคำร้องไม่สำเร็จ');
+    }
   }
-}
-
 
   async function handleReset() {
     if (!window.confirm('ต้องการคืนข้อมูลตัวอย่างเริ่มต้นหรือไม่?')) return;
@@ -111,7 +111,6 @@ function DashboardPage() {
               <h2 id="request-list-title">รายการคำร้อง</h2>
               <FilterBar value={statusFilter} onFilterChange={setStatusFilter} />
             </div>
-            {/* TODO B2: วางช่อง <input> ค้นหา ตรงนี้ (เหนือรายการ) แล้วกรองร่วมกับตัวกรองสถานะ ค้นจากประเภท/สถานที่ */}
             <input
               type="search"
               className="input"
@@ -119,9 +118,13 @@ function DashboardPage() {
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
               data-testid="search-input"
-              />
-            {/* TODO B3: ส่ง onAcknowledge={handleAcknowledge} ให้ RequestList เพื่อให้การ์ด pending มีปุ่ม "รับเรื่อง" */}
-            <RequestList requests={filteredRequests} onDeleteRequest={handleDelete} />
+            />
+            {/* 🟢 2. ส่ง searchText={searchText} เพิ่มตรงนี้ */}
+            <RequestList 
+              requests={filteredRequests} 
+              onDeleteRequest={handleDelete} 
+              searchText={searchText} 
+            />
           </section>
         </>
       )}
