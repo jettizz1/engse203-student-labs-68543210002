@@ -1,9 +1,10 @@
 {
   "week": "week-05",
   "title": "React Campus Service Request & Data Recovery",
-  "status": "ready",
-  "sourceOrigin": "https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-05/lab05/starter/src",
+  "status": "submitted",
+  "sourceOrigin": "student-created",
   "originalRepoUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-05/lab05/starter",
+  "pullRequestUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/pull/10",
   "submissionTag": "lab-05-submission-v1",
   "testStatus": "pass",
   "notes": "ผ่าน LAB05 checker ครบ 133/133 รายการ ครอบคลุม routing, รายละเอียดคำร้อง, LocalStorage persistence และ data recovery"
