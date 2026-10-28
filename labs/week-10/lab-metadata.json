@@ -1,7 +1,7 @@
 {
   "week": "week-10",
   "title": "Campus Service Request — React, Express & SQLite",
-  "status": "ready",
+  "status": "submitted",
   "sourceOrigin": "student-created",
   "sourceUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-10/source",
   "originalRepoUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002",
@@ -9,5 +9,5 @@
   "version": "lab-10-submission-v1",
   "testStatus": "pass",
   "notes": "API tests, frontend checker, LAB10 checker and Week 07 regression checker pass. Pages publishes a standalone React demo using browser storage; Express and SQLite require a separately hosted API.",
-  "pullRequestUrl": ""
+  "pullRequestUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/pull/8"
 }
