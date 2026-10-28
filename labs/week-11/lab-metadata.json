@@ -1,7 +1,7 @@
 {
   "week": "week-11",
   "title": "Campus Service — Full-Stack Integration",
-  "status": "ready",
+  "status": "submitted",
   "testStatus": "pass",
   "sourceOrigin": "student-created",
   "sourceUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-11/source",
@@ -9,5 +9,5 @@
   "version": "lab-11-submission-v1",
   "submissionTag": "lab-11-submission-v1",
   "notes": "Static Pages output is a responsive showcase only. Express and SQLite require a separate Node.js deployment.",
-  "pullRequestUrl": ""
+  "pullRequestUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/pull/9"
 }
