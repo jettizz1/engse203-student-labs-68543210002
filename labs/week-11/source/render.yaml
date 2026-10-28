@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: campus-service-lab11
+    runtime: node
+    buildCommand: npm --prefix frontend ci && npm --prefix frontend run build && npm --prefix api ci
+    startCommand: npm --prefix api start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DB_FILE
+        value: /var/data/campus.db
+      - key: CORS_ORIGIN
+        value: https://campus-service-lab11.onrender.com
+    disk:
+      name: campus-service-data
+      mountPath: /var/data
+      sizeGB: 1

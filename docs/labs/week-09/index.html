@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10233f">
+  <meta name="description" content="LAB09: Campus Service Request — relational SQLite model, tested SQL queries, and constraint evidence.">
+  <title>LAB 09 · Campus Service Request</title>
+  <style>
+    :root{color-scheme:light;--ink:#152b45;--muted:#61748a;--navy:#10233f;--blue:#2269b2;--cyan:#2cc9c0;--paper:#f3f7fb;--line:#d8e3ee;--white:#fff;--green:#147a58;--shadow:0 18px 48px #10233f12}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,"Noto Sans Thai",Tahoma,Arial,sans-serif;line-height:1.65}
+    a{color:inherit}
+    .wrap{width:min(1120px,calc(100% - 40px));margin:auto}
+    .hero{position:relative;overflow:hidden;padding:32px 0 74px;color:#fff;background:radial-gradient(ellipse at 87% 3%,#2b8a9d77,transparent 36%),linear-gradient(125deg,#0d1d35 0%,#153d62 66%,#116d75 100%)}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{font-size:13px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#b8d7e8}
+    .toplinks{display:flex;gap:18px;font-size:13px}.toplinks a{text-decoration:none;color:#d9ebf5}.toplinks a:hover{text-decoration:underline}
+    .hero-grid{display:grid;grid-template-columns:1.3fr .7fr;align-items:center;gap:50px;padding-top:68px}
+    .eyebrow{display:flex;align-items:center;gap:10px;color:#8ef0df;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+    .eyebrow:before{content:"";width:28px;height:2px;background:var(--cyan)}
+    h1{max-width:760px;margin:17px 0 16px;font-size:clamp(38px,6vw,68px);line-height:1.08;letter-spacing:-.045em}
+    .hero-copy{max-width:630px;margin:0;color:#d0dfeb;font-size:17px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:27px}
+    .button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 16px;border:1px solid #ffffff50;border-radius:10px;text-decoration:none;font-size:14px;font-weight:800;transition:transform .18s,background .18s}
+    .button:hover{transform:translateY(-2px);background:#ffffff18}.button.primary{border-color:#9af3df;background:#9af3df;color:#092940}
+    .status-card{padding:21px;border:1px solid #ffffff2b;border-radius:18px;background:#ffffff0e;backdrop-filter:blur(8px)}
+    .status-line{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .badge{display:inline-flex;align-items:center;gap:7px;padding:5px 10px;border-radius:99px;background:#d9f9e9;color:#116144;font-size:12px;font-weight:900}
+    .badge:before{content:"";width:7px;height:7px;border-radius:50%;background:#21a675}
+    .status-card small{color:#c1d5e4}.status-card strong{display:block;margin:13px 0 1px;font-size:20px}
+    .status-card p{margin:0;color:#c1d5e4;font-size:13px}
+    .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}
+    .hero-stats div{padding:12px 9px;border-radius:10px;background:#ffffff0c;text-align:center}
+    .hero-stats b{display:block;font-size:22px;color:#fff}.hero-stats span{font-size:11px;color:#bed3e1}
+    main{padding-bottom:60px}
+    .summary{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:-30px}
+    .metric{padding:17px 18px;border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:var(--shadow)}
+    .metric b{display:block;font-size:25px;line-height:1.2;color:var(--blue)}.metric span{font-size:12px;color:var(--muted)}
+    section{margin-top:62px;scroll-margin-top:24px}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:20px}
+    .kicker{margin:0 0 5px;color:var(--blue);font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+    h2{margin:0;font-size:clamp(25px,3vw,34px);line-height:1.25;letter-spacing:-.03em}
+    .section-intro{max-width:610px;margin:7px 0 0;color:var(--muted)}
+    .model{display:grid;grid-template-columns:1fr 90px 1fr;align-items:stretch;gap:16px}
+    .entity{padding:22px;border:1px solid var(--line);border-radius:17px;background:#fff;box-shadow:var(--shadow)}
+    .entity-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+    .entity h3{margin:0;font-size:20px}.entity-tag{padding:4px 8px;border-radius:6px;background:#e8f3fb;color:#235f91;font-size:10px;font-weight:900}
+    .column{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-top:1px solid #edf2f6;font-size:13px}
+    .column code{color:#2c618d;font-size:12px}.column span{color:var(--muted);text-align:right}
+    .relation{display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--muted);font-size:12px;text-align:center}
+    .relation .line{position:relative;width:100%;height:2px;background:linear-gradient(90deg,#2c74b6,#35bcb1)}
+    .relation .line:after{position:absolute;right:0;top:-4px;width:9px;height:9px;border-top:2px solid #35bcb1;border-right:2px solid #35bcb1;content:"";transform:rotate(45deg)}
+    .relation strong{margin-bottom:8px;color:#286da3;font-size:14px}.relation small{margin-top:8px}
+    .model-note{margin-top:13px;padding:13px 16px;border-left:3px solid var(--cyan);border-radius:0 9px 9px 0;background:#eaf8f7;color:#496675;font-size:13px}
+    .query-shell{overflow:hidden;border:1px solid var(--line);border-radius:17px;background:#fff;box-shadow:var(--shadow)}
+    .query-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:15px;border-bottom:1px solid var(--line);background:#fafcfe}
+    .filter{padding:7px 11px;border:1px solid var(--line);border-radius:99px;background:#fff;color:#486078;font:inherit;font-size:12px;font-weight:800;cursor:pointer}
+    .filter[aria-pressed=true]{border-color:#1d6db1;background:#e9f4fc;color:#15578e}
+    .query-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;padding:15px}
+    details.query{min-width:0;border:1px solid #e1e9f0;border-radius:12px;background:#fff}
+    details.query[hidden]{display:none}
+    details.query summary{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:13px 14px;cursor:pointer;list-style:none}
+    details.query summary::-webkit-details-marker{display:none}
+    .qtitle{font-size:13px;font-weight:900}.qmeta{display:block;margin-top:2px;color:var(--muted);font-size:11px;font-weight:500}
+    .qnum{flex:none;padding:4px 7px;border-radius:6px;background:#eff5fa;color:#2c6e9e;font:800 11px ui-monospace,monospace}
+    pre{overflow:auto;margin:0;padding:14px;background:#11243d;color:#d9ebf8;font:12px/1.7 "Cascadia Code",Consolas,monospace}
+    .query-note{padding:9px 13px;border-top:1px solid #edf2f6;color:var(--muted);font-size:11px}
+    .results{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
+    .result-card{padding:21px;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:var(--shadow)}
+    .result-card h3{margin:0 0 15px;font-size:17px}
+    table{width:100%;border-collapse:collapse;font-size:13px}
+    th,td{padding:9px 8px;border-bottom:1px solid #e8eef4;text-align:left}
+    th{color:#687c8f;font-size:11px}
+    .status-pill{display:inline-block;padding:3px 8px;border-radius:99px;background:#edf3f8;color:#496078;font-size:11px}
+    .status-pill.pending{background:#fff1d2;color:#8b5a00}.status-pill.completed{background:#e2f6ed;color:#146745}.status-pill.in-progress{background:#e6effc;color:#245a9a}
+    .result-caption{margin:12px 0 0;color:var(--muted);font-size:11px}
+    .integrity{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+    .integrity article{padding:15px;border:1px solid var(--line);border-radius:12px;background:#fff}
+    .integrity b{display:block;color:var(--green);font-size:12px}.integrity p{margin:6px 0 0;color:var(--muted);font-size:11px}
+    .deliverables{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+    .file-card{display:flex;flex-direction:column;padding:17px;border:1px solid var(--line);border-radius:13px;background:#fff}
+    .file-card span{color:var(--blue);font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+    .file-card b{margin:5px 0;font-size:15px}.file-card p{flex:1;margin:0 0 13px;color:var(--muted);font-size:12px}
+    .file-card a{color:#1d659e;font-size:12px;font-weight:900;text-decoration:none}.file-card a:hover{text-decoration:underline}
+    .notice{margin-top:18px;padding:13px 16px;border:1px solid #ecdba9;border-radius:10px;background:#fff9e8;color:#75613a;font-size:12px}
+    footer{padding:26px 0;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+    footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+    footer a{color:#2a679b}
+    :focus-visible{outline:3px solid #16a7b3;outline-offset:3px}
+    @media(max-width:800px){.hero-grid{grid-template-columns:1fr;gap:28px;padding-top:45px}.status-card{max-width:470px}.summary{grid-template-columns:repeat(2,1fr)}.model{grid-template-columns:1fr}.relation{min-height:55px}.relation .line{width:2px;height:35px;background:linear-gradient(#2c74b6,#35bcb1)}.relation .line:after{right:-4px;top:auto;bottom:0;transform:rotate(135deg)}.relation strong{margin:0}.relation small{display:none}.results{grid-template-columns:1fr}.integrity{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:560px){.wrap{width:min(100% - 28px,1120px)}.hero{padding-top:22px}.topbar{align-items:flex-start}.toplinks{gap:10px;font-size:11px}.hero-grid{padding-top:40px}h1{font-size:43px}.hero-copy{font-size:15px}.summary{gap:8px}.metric{padding:13px}.metric b{font-size:21px}.section-head{display:block}.query-list{grid-template-columns:1fr;padding:10px}.integrity{grid-template-columns:repeat(2,1fr)}.deliverables{grid-template-columns:1fr}.hero-stats{gap:6px}.hero-stats div{padding:10px 5px}.hero-stats b{font-size:19px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <nav class="topbar" aria-label="หลัก">
+        <span class="brand">ENGSE203 · UNIT 04</span>
+        <div class="toplinks"><a href="#model">Data model</a><a href="#queries">SQL</a><a href="#files">Files</a></div>
+      </nav>
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Laboratory 09 · Week 09</div>
+          <h1>Campus Service<br>Request</h1>
+          <p class="hero-copy">ออกแบบ relational database ด้วย SQLite แยกผู้แจ้งออกจากคำร้อง เชื่อมข้อมูลด้วย foreign key และตรวจ query กับ constraint ด้วยฐานข้อมูลที่รันได้จริง</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#queries">สำรวจ SQL queries ↓</a>
+            <a class="button" href="schema.sql" download>ดาวน์โหลด schema.sql</a>
+          </div>
+        </div>
+        <aside class="status-card" aria-label="สถานะ submission">
+          <div class="status-line"><small>SUBMISSION · LAB 09</small><span class="badge">Submitted</span></div>
+          <strong>Database ready</strong>
+          <p>SQLite schema · seed data · query suite · constraint checks</p>
+          <div class="hero-stats">
+            <div><b>2</b><span>relational tables</span></div>
+            <div><b>10</b><span>tested queries</span></div>
+            <div><b>5/5</b><span>constraints rejected</span></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="summary" aria-label="สรุปฐานข้อมูล">
+      <div class="metric"><b>05</b><span>users in sample data</span></div>
+      <div class="metric"><b>10</b><span>sample service requests</span></div>
+      <div class="metric"><b>03</b><span>request statuses covered</span></div>
+      <div class="metric"><b>02</b><span>indexes in schema</span></div>
+    </div>
+
+    <section id="model">
+      <div class="section-head">
+        <div><p class="kicker">01 · Data model</p><h2>One requester, many requests</h2><p class="section-intro">ข้อมูลผู้ใช้เก็บเพียงครั้งเดียว ส่วนแต่ละคำร้องอ้างถึงผู้ใช้ด้วย `requester_id` ที่มี foreign key คุ้มครอง</p></div>
+      </div>
+      <div class="model" role="img" aria-label="users หนึ่งคนเชื่อมโยงกับ requests ได้หลายรายการ ผ่าน requester_id">
+        <article class="entity">
+          <div class="entity-head"><h3>users</h3><span class="entity-tag">PARENT · 1</span></div>
+          <div class="column"><code>id</code><span>INTEGER · primary key</span></div>
+          <div class="column"><code>name</code><span>ชื่อผู้แจ้ง</span></div>
+          <div class="column"><code>department</code><span>หน่วยงาน</span></div>
+          <div class="column"><code>email</code><span>UNIQUE · not null</span></div>
+        </article>
+        <div class="relation"><strong>1 → N</strong><div class="line"></div><small>requester_id → id</small></div>
+        <article class="entity">
+          <div class="entity-head"><h3>requests</h3><span class="entity-tag">CHILD · N</span></div>
+          <div class="column"><code>id</code><span>TEXT · e.g. REQ-001</span></div>
+          <div class="column"><code>requester_id</code><span>INTEGER · foreign key</span></div>
+          <div class="column"><code>request_type</code><span>CHECK · allowed types</span></div>
+          <div class="column"><code>priority / status</code><span>defaults + CHECK</span></div>
+        </article>
+      </div>
+      <div class="model-note">การแยกตารางทำให้การแก้ชื่อผู้แจ้งแก้เพียงแถวเดียว ขณะที่ SQLite ปฏิเสธคำร้องที่อ้างถึงผู้ใช้ซึ่งไม่มีอยู่</div>
+    </section>
+
+    <section id="queries">
+      <div class="section-head">
+        <div><p class="kicker">02 · Query explorer</p><h2>SQL you can run</h2><p class="section-intro">เลือกหมวดเพื่อดูตัวอย่าง query จากไฟล์จริง ทั้งการค้นหา การ JOIN และการสรุปข้อมูล</p></div>
+        <a class="button" style="color:#175b91;border-color:#aec6da" href="queries.sql" download>ดาวน์โหลด queries.sql ↓</a>
+      </div>
+      <div class="query-shell">
+        <div class="query-toolbar" role="group" aria-label="กรอง SQL queries">
+          <button class="filter" type="button" data-filter="all" aria-pressed="true">ทั้งหมด</button>
+          <button class="filter" type="button" data-filter="filter" aria-pressed="false">ค้นหา · ①–④</button>
+          <button class="filter" type="button" data-filter="join" aria-pressed="false">JOIN · ⑤–⑦</button>
+          <button class="filter" type="button" data-filter="aggregate" aria-pressed="false">สรุปผล · ⑧–⑪</button>
+        </div>
+        <div class="query-list">
+          <details class="query" data-category="filter"><summary><span><span class="qtitle">คำร้องที่ยัง pending</span><span class="qmeta">กรองสถานะพร้อมเรียงผลลัพธ์</span></span><span class="qnum">02</span></summary><pre><code>SELECT id, location, details, status
+FROM requests
+WHERE status = 'pending'
+ORDER BY id;</code></pre><div class="query-note">กรองจากสถานะและเรียงตามรหัสคำร้อง</div></details>
+          <details class="query" data-category="filter"><summary><span><span class="qtitle">เร่งด่วนและยังไม่เสร็จ</span><span class="qmeta">เงื่อนไขสองข้อ · LIKE แบบบางส่วน</span></span><span class="qnum">03–04</span></summary><pre><code>SELECT id, location, priority, status
+FROM requests
+WHERE priority = 'urgent'
+  AND status &lt;&gt; 'completed'
+ORDER BY id;
+
+SELECT id, details
+FROM requests
+WHERE details LIKE '%เครื่อง%'
+ORDER BY id;</code></pre><div class="query-note">ตัวอย่างจากทั้งเงื่อนไขร่วมและการค้นข้อความ</div></details>
+          <details class="query" data-category="join"><summary><span><span class="qtitle">คำร้องพร้อมชื่อผู้แจ้ง</span><span class="qmeta">JOIN ผ่าน foreign key</span></span><span class="qnum">05</span></summary><pre><code>SELECT r.id, u.name AS requester_name,
+       r.request_type, r.status
+FROM requests AS r
+JOIN users AS u ON u.id = r.requester_id
+ORDER BY r.id;</code></pre><div class="query-note">ผลลัพธ์มีชื่อผู้แจ้งโดยไม่ทำสำเนาชื่อใน requests</div></details>
+          <details class="query" data-category="join"><summary><span><span class="qtitle">รายงานนับต่อผู้ใช้</span><span class="qmeta">LEFT JOIN เก็บคนที่ยังไม่เคยแจ้งด้วย</span></span><span class="qnum">10</span></summary><pre><code>SELECT u.name, u.department, COUNT(r.id) AS total
+FROM users AS u
+LEFT JOIN requests AS r ON r.requester_id = u.id
+GROUP BY u.id, u.name, u.department
+ORDER BY total DESC, u.name;</code></pre><div class="query-note">ผู้ใช้ที่ยังไม่มีคำร้องจะปรากฏพร้อมยอด 0</div></details>
+          <details class="query" data-category="aggregate"><summary><span><span class="qtitle">คำร้อง 3 รายการล่าสุด</span><span class="qmeta">เรียงเวลาใหม่ไปเก่าแล้วจำกัดผล</span></span><span class="qnum">08</span></summary><pre><code>SELECT id, request_type, created_at
+FROM requests
+ORDER BY created_at DESC, id DESC
+LIMIT 3;</code></pre><div class="query-note">วันที่ sample ตั้งค่าคงที่เพื่อให้ผลทดสอบทำซ้ำได้</div></details>
+          <details class="query" data-category="aggregate"><summary><span><span class="qtitle">จำนวนคำร้องแยกตามสถานะ</span><span class="qmeta">GROUP BY + COUNT</span></span><span class="qnum">09</span></summary><pre><code>SELECT status, COUNT(*) AS total
+FROM requests
+GROUP BY status
+ORDER BY total DESC, status;</code></pre><div class="query-note">สรุปทุกกลุ่มสถานะที่พบใน sample data</div></details>
+        </div>
+      </div>
+    </section>
+
+    <section id="sample">
+      <div class="section-head"><div><p class="kicker">03 · Example output</p><h2>What the JOIN returns</h2><p class="section-intro">ชื่อและสถานะถูกรวมจากสองตารางด้วย `requests.requester_id = users.id`</p></div></div>
+      <div class="results">
+        <article class="result-card">
+          <h3>Joined request rows</h3>
+          <table><thead><tr><th>Request</th><th>Requester</th><th>Status</th></tr></thead><tbody>
+            <tr><td>REQ-001</td><td>สมชาย ใจดี</td><td><span class="status-pill pending">pending</span></td></tr>
+            <tr><td>REQ-002</td><td>สุภาวดี รักเรียน</td><td><span class="status-pill in-progress">in-progress</span></td></tr>
+            <tr><td>REQ-003</td><td>ธนกฤต ตั้งใจ</td><td><span class="status-pill completed">completed</span></td></tr>
+          </tbody></table>
+          <p class="result-caption">แถวตัวอย่างข้างต้นสอดคล้องกับ query JOIN ใน `queries.sql` และข้อมูลใน seed</p>
+        </article>
+        <article class="result-card">
+          <h3>Sample status totals</h3>
+          <table><thead><tr><th>Status</th><th>Requests</th></tr></thead><tbody>
+            <tr><td>pending</td><td>5</td></tr><tr><td>in-progress</td><td>3</td></tr><tr><td>completed</td><td>2</td></tr>
+          </tbody></table>
+          <p class="result-caption">ผลจาก `GROUP BY status` บน sample seed จำนวน 10 รายการ</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="integrity">
+      <div class="section-head"><div><p class="kicker">04 · Integrity checks</p><h2>Invalid data is rejected</h2><p class="section-intro">ทดสอบจริงด้วย SQLite และเปิดใช้ foreign key enforcement ก่อน insert</p></div></div>
+      <div class="integrity">
+        <article><b>✓ Foreign key</b><p>ไม่รับ requester_id ที่ไม่มี</p></article>
+        <article><b>✓ CHECK</b><p>ไม่รับ status นอกชุดที่กำหนด</p></article>
+        <article><b>✓ UNIQUE</b><p>ไม่รับ email ซ้ำ</p></article>
+        <article><b>✓ Primary key</b><p>ไม่รับรหัสคำร้องซ้ำ</p></article>
+        <article><b>✓ NOT NULL</b><p>ไม่รับคำร้องที่ไม่มี location</p></article>
+      </div>
+    </section>
+
+    <section id="files">
+      <div class="section-head"><div><p class="kicker">05 · Project files</p><h2>Explore the deliverables</h2><p class="section-intro">ไฟล์ SQL ดาวน์โหลดได้โดยตรงจาก showcase นี้ ส่วน source และหลักฐานฉบับเต็มอยู่ใน repository</p></div></div>
+      <div class="deliverables">
+        <article class="file-card"><span>Schema</span><b>schema.sql</b><p>สร้างตาราง, constraints, indexes และ sample rows; รันซ้ำได้</p><a href="schema.sql" download>Download schema.sql ↗</a></article>
+        <article class="file-card"><span>Queries</span><b>queries.sql</b><p>คำถาม 8 ข้อและ challenge 3 ข้อ พร้อม SQL ที่รันทดสอบแล้ว</p><a href="queries.sql" download>Download queries.sql ↗</a></article>
+        <article class="file-card"><span>Playground seed</span><b>playground-seed.sql</b><p>ไฟล์ตั้งต้นครบสำหรับทดลองใน SQLite playground</p><a href="playground-seed.sql" download>Download seed ↗</a></article>
+        <article class="file-card"><span>Model notes</span><b>DATA_MODEL.md</b><p>ความสัมพันธ์, เหตุผลการแยกข้อมูล, JOIN และแนวทาง Week 10</p><a href="https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-09/source/DATA_MODEL.md">View model notes ↗</a></article>
+        <article class="file-card"><span>Test evidence</span><b>CONSTRAINT_TEST.md</b><p>บันทึกผลการปฏิเสธข้อมูลผิด 5 รูปแบบ</p><a href="https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-09/source/CONSTRAINT_TEST.md">View test evidence ↗</a></article>
+        <article class="file-card"><span>Source repository</span><b>Runnable source</b><p>validator, database builder และเอกสารประกอบการรัน</p><a href="https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-09/source">Open source folder ↗</a></article>
+      </div>
+      <div class="notice"><strong>ขอบเขตการสาธิต:</strong> หน้านี้เป็น project showcase แบบ static ไม่ใช่แอปที่เชื่อมต่อฐานข้อมูลสด ตารางผลลัพธ์แสดงค่าที่ตรวจจาก sample seed และตรวจซ้ำได้ด้วย `validate.mjs`</div>
+    </section>
+  </main>
+  <footer><div class="wrap"><span>ENGSE203 · LAB09 · Campus Service Request</span><span>Version <strong>lab-09-submission-v1</strong> · <a href="https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-09/source">source</a></span></div></footer>
+  <script>
+    const buttons = [...document.querySelectorAll('.filter')];
+    const cards = [...document.querySelectorAll('.query')];
+    buttons.forEach((button) => button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+      buttons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+      cards.forEach((card) => { card.hidden = filter !== 'all' && card.dataset.category !== filter; });
+    }));
+  </script>
+</body>
+</html>

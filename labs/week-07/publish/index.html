@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10233f">
+  <meta name="description" content="ENGSE203 LAB07 static showcase for the Campus Service Request application.">
+  <title>LAB07 — Campus Service Request</title>
+  <style>
+    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#14243a;background:#f2f6fb;font-synthesis:none}
+    *{box-sizing:border-box}body{margin:0;min-width:320px}a{color:inherit}
+    .hero{padding:clamp(2rem,7vw,5.5rem) max(1.25rem,calc((100vw - 1120px)/2));background:radial-gradient(ellipse at 86% 20%,#2d8d91 0,transparent 36%),linear-gradient(125deg,#10233f,#155a80);color:#fff}
+    .eyebrow{font-size:.76rem;letter-spacing:.16em;font-weight:800;text-transform:uppercase;color:#9be2d7}.hero h1{max-width:760px;margin:.7rem 0;font-size:clamp(2.4rem,7vw,5rem);line-height:1.04;letter-spacing:-.04em}.hero p{max-width:670px;color:#d4e5f3;font-size:1.12rem;line-height:1.7}
+    .tag{display:inline-flex;padding:.4rem .7rem;border:1px solid #ffffff50;border-radius:99px;background:#ffffff12;font-size:.87rem;font-weight:700}
+    main{max-width:1120px;margin:auto;padding:2rem 1.25rem 4rem}.banner{padding:1rem 1.1rem;border:1px solid #edcd7d;border-left:5px solid #e6a824;border-radius:.8rem;background:#fff9e9;line-height:1.6}.banner strong{display:block;color:#624600}
+    .layout{display:grid;grid-template-columns:1.1fr .9fr;gap:1.2rem;margin-top:1.5rem}.panel{padding:clamp(1.1rem,3vw,1.7rem);border:1px solid #d5e0eb;border-radius:1rem;background:#fff;box-shadow:0 12px 32px #10233f0b}.panel h2{margin:.1rem 0 1rem;font-size:1.35rem}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.65rem}.stat{padding:.8rem;border-radius:.75rem;background:#f1f6fb}.stat strong{display:block;font-size:1.4rem;color:#1768c4}.stat span{font-size:.85rem;color:#546981}
+    .request{padding:.9rem 0;border-bottom:1px solid #e5ecf2}.request:last-child{border:0}.request-head{display:flex;justify-content:space-between;gap:.8rem}.request h3{margin:.2rem 0;font-size:1rem}.request p{margin:.3rem 0;color:#586b80;line-height:1.5}.badge{display:inline-block;padding:.22rem .55rem;border-radius:99px;background:#fff0cc;color:#774c00;font-size:.8rem;font-weight:750}.badge.progress{background:#dff6f5;color:#075e68}.badge.done{background:#dff4e8;color:#176b45}
+    .steps{padding-left:1.25rem;color:#4c6076;line-height:1.8}.steps strong{color:#152c47}.links{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1.3rem}.links a{padding:.7rem .9rem;border:1px solid #b8c9d9;border-radius:.65rem;color:#124c79;text-decoration:none;font-weight:750}.links a.primary{border-color:#1768c4;background:#1768c4;color:white}
+    footer{padding:1.5rem 1.25rem;text-align:center;color:#dce7f1;background:#10233f;font-size:.9rem}
+    @media(max-width:720px){.layout{grid-template-columns:1fr}.hero{padding-top:2.5rem}.stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media(max-width:420px){.request-head{align-items:flex-start;flex-direction:column}.stat{padding:.65rem}.stat span{font-size:.75rem}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <span class="tag">ENGSE203 · LAB 07 · SUBMITTED</span>
+    <p class="eyebrow">Campus Service Request</p>
+    <h1>One clear place to track campus requests.</h1>
+    <p>A React interface connected to an Express REST API, with request creation, detail views, status updates, filtering, and deletion.</p>
+  </header>
+  <main>
+    <aside class="banner" role="note"><strong>Static GitHub Pages showcase</strong>This hosted page is a static presentation and sample data preview. GitHub Pages does not run the Express API. Start the API and React frontend separately using the source README to use the live application.</aside>
+    <div class="layout">
+      <section class="panel" aria-labelledby="sample-title">
+        <h2 id="sample-title">Sample service dashboard</h2>
+        <div class="stats" aria-label="Sample request totals">
+          <div class="stat"><strong>3</strong><span>Requests</span></div>
+          <div class="stat"><strong>1</strong><span>In progress</span></div>
+          <div class="stat"><strong>1</strong><span>Completed</span></div>
+        </div>
+        <article class="request">
+          <div class="request-head"><h3>แจ้งซ่อม · ห้องปฏิบัติการ 301</h3><span class="badge">pending</span></div>
+          <p>เครื่องปรับอากาศไม่ทำงานตั้งแต่เช้า · urgent</p>
+        </article>
+        <article class="request">
+          <div class="request-head"><h3>บริการบัญชีผู้ใช้</h3><span class="badge progress">in-progress</span></div>
+          <p>เข้าสู่ระบบห้องปฏิบัติการไม่ได้ · normal</p>
+        </article>
+        <article class="request">
+          <div class="request-head"><h3>ขอใช้อุปกรณ์ · ห้องประชุม 2</h3><span class="badge done">completed</span></div>
+          <p>ขอยืมโปรเจกเตอร์สำหรับนำเสนอโครงงาน · normal</p>
+        </article>
+      </section>
+      <section class="panel" aria-labelledby="integration-title">
+        <h2 id="integration-title">Runnable integration</h2>
+        <ol class="steps">
+          <li><strong>Start the API:</strong> install and run <code>npm run dev</code> from <code>source/api/</code>.</li>
+          <li><strong>Start the frontend:</strong> install and run <code>npm run dev</code> from <code>source/frontend/</code>.</li>
+          <li><strong>Try the flow:</strong> create a request, inspect its details, update its status, and delete it.</li>
+        </ol>
+        <p>API data is held in memory and resets when the API process restarts. Configure CORS and the frontend API URL with environment variables.</p>
+        <div class="links">
+          <a class="primary" href="https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-07/source">Source code &amp; run instructions</a>
+          <a href="https://github.com/jettizz1/engse203-student-labs-68543210002">Repository</a>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer>LAB07 · React + Express · Static showcase only; the API runs separately.</footer>
+</body>
+</html>

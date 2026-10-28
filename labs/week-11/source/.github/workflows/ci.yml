@@ -1,0 +1,30 @@
+name: LAB 11 CI
+
+on:
+  push:
+    paths:
+      - "api/**"
+      - "frontend/**"
+      - ".github/workflows/ci.yml"
+  pull_request:
+    paths:
+      - "api/**"
+      - "frontend/**"
+      - ".github/workflows/ci.yml"
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: |
+            api/package-lock.json
+            frontend/package-lock.json
+      - run: npm ci --prefix api
+      - run: npm ci --prefix frontend
+      - run: npm --prefix api test
+      - run: npm --prefix frontend run build

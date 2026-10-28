@@ -1,0 +1,11 @@
+{
+  "week": "week-09",
+  "title": "Campus Service Request — Relational SQL Model",
+  "status": "submitted",
+  "sourceOrigin": "student-created",
+  "sourceUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-09/source",
+  "originalRepoUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002",
+  "submissionTag": "lab-09-submission-v1",
+  "testStatus": "pass",
+  "notes": "SQLite schema and sample database were executed and checked with Node.js node:sqlite. The submitted SQL includes all required queries, the challenge queries, repeatable seeds, and five live constraint rejection checks. No pull request URL is listed because none was provided."
+}

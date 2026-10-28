@@ -90,5 +90,63 @@
     "sourceUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-06/source",
     "hasPublish": true,
     "sourceEntries": 8
+  },
+  {
+    "week": "week-07",
+    "title": "Campus Service Request — React + REST API",
+    "status": "submitted",
+    "testStatus": "pass",
+    "sourceOrigin": "student-created",
+    "sourceUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-07/source",
+    "originalRepoUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002",
+    "submissionTag": "lab-07-submission-v1",
+    "notes": "Runnable React frontend and Express API are in source/. GitHub Pages serves a static showcase only; the Express API must be started separately.",
+    "pageUrl": "https://jettizz1.github.io/engse203-student-labs-68543210002/labs/week-07/",
+    "hasPublish": true,
+    "sourceEntries": 7
+  },
+  {
+    "week": "week-09",
+    "title": "Campus Service Request — Relational SQL Model",
+    "status": "submitted",
+    "sourceOrigin": "student-created",
+    "sourceUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-09/source",
+    "originalRepoUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002",
+    "submissionTag": "lab-09-submission-v1",
+    "testStatus": "pass",
+    "notes": "SQLite schema and sample database were executed and checked with Node.js node:sqlite. The submitted SQL includes all required queries, the challenge queries, repeatable seeds, and five live constraint rejection checks. No pull request URL is listed because none was provided.",
+    "pageUrl": "https://jettizz1.github.io/engse203-student-labs-68543210002/labs/week-09/",
+    "hasPublish": true,
+    "sourceEntries": 10
+  },
+  {
+    "week": "week-10",
+    "title": "Campus Service Request — React, Express & SQLite",
+    "status": "submitted",
+    "sourceOrigin": "student-created",
+    "sourceUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-10/source",
+    "originalRepoUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002",
+    "submissionTag": "lab-10-submission-v1",
+    "version": "lab-10-submission-v1",
+    "testStatus": "pass",
+    "notes": "API tests, frontend checker, LAB10 checker and Week 07 regression checker pass. Pages publishes a standalone React demo using browser storage; Express and SQLite require a separately hosted API.",
+    "pageUrl": "https://jettizz1.github.io/engse203-student-labs-68543210002/labs/week-10/",
+    "hasPublish": true,
+    "sourceEntries": 6
+  },
+  {
+    "week": "week-11",
+    "title": "Campus Service — Full-Stack Integration",
+    "status": "submitted",
+    "testStatus": "pass",
+    "sourceOrigin": "student-created",
+    "sourceUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-11/source",
+    "originalRepoUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002",
+    "version": "lab-11-submission-v1",
+    "submissionTag": "lab-11-submission-v1",
+    "notes": "Static Pages output is a responsive showcase only. Express and SQLite require a separate Node.js deployment. No pull request URL is claimed.",
+    "pageUrl": "https://jettizz1.github.io/engse203-student-labs-68543210002/labs/week-11/",
+    "hasPublish": true,
+    "sourceEntries": 13
   }
 ]

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10263f">
+  <title>Campus Service | LAB 11</title>
+  <style>
+    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#14263d;background:#edf3f8;font-synthesis:none}
+    *{box-sizing:border-box}body{margin:0;min-width:320px}.hero{padding:clamp(2rem,7vw,5rem) max(1.25rem,calc((100% - 1040px)/2));background:linear-gradient(130deg,#10263f,#145682 68%,#087e83);color:#fff}.eyebrow{letter-spacing:.14em;text-transform:uppercase;font-size:.78rem;font-weight:800;color:#b8dff0}.hero h1{max-width:780px;margin:.7rem 0;font-size:clamp(2.4rem,8vw,4.8rem);line-height:1.04}.hero p{max-width:700px;color:#e3f2f8;font-size:1.1rem;line-height:1.7}.status{display:inline-flex;align-items:center;gap:.45rem;padding:.45rem .8rem;border:1px solid #ffffff50;border-radius:99px;background:#ffffff16;font-weight:700}.dot{width:.55rem;height:.55rem;border-radius:50%;background:#54dc93}main{max-width:1040px;margin:auto;padding:2rem 1.25rem 4rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:1rem}.card{padding:1.35rem;border:1px solid #cbd9e6;border-radius:1rem;background:#fff;box-shadow:0 10px 24px #10263f0c}.card h2{margin:.1rem 0 .65rem;font-size:1.2rem}.card p{margin:0;color:#52657a;line-height:1.65}.notice{margin:1rem 0 1.4rem;padding:1rem 1.1rem;border-left:5px solid #e3a32f;border-radius:.65rem;background:#fff7e6;line-height:1.65}.links{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.2rem}.links a{display:inline-block;padding:.75rem 1rem;border-radius:.65rem;background:#1261a6;color:#fff;text-decoration:none;font-weight:750}.links a.secondary{border:1px solid #9db5c9;background:#fff;color:#164d78}footer{max-width:1040px;margin:auto;padding:0 1.25rem 2rem;color:#596d81;font-size:.9rem}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <span class="eyebrow">ENGSE203 · Week 11</span>
+    <h1>Campus Service</h1>
+    <p>A three-tier campus service-request application integrating a responsive React client, an Express JSON API, and a relational SQLite database.</p>
+    <span class="status"><span class="dot"></span> Submission showcase · Tests pass</span>
+  </header>
+  <main>
+    <div class="notice"><strong>Hosting note:</strong> This GitHub Pages page is a static showcase. GitHub Pages cannot run the Express server or SQLite. The interactive app needs its API and persistent database deployed separately; the production Express app serves the built frontend when hosted on a Node.js service.</div>
+    <section class="grid" aria-label="Project details">
+      <article class="card"><h2>Frontend</h2><p>React and Vite provide the dashboard, request filtering, details, status updates, and validated request creation.</p></article>
+      <article class="card"><h2>API</h2><p>Express exposes JSON request routes, a database-aware health endpoint, centralized errors, and production static-file serving.</p></article>
+      <article class="card"><h2>Database</h2><p>SQLite stores normalized users and requests with foreign keys, status constraints, indexes, and transactional creation.</p></article>
+      <article class="card"><h2>Verification</h2><p>Source includes the LAB 11 checkers, API tests, setup scripts, production build configuration, and run documentation.</p></article>
+    </section>
+    <div class="links">
+      <a href="https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-11/source">Browse complete source</a>
+      <a class="secondary" href="https://github.com/jettizz1/engse203-student-labs-68543210002/blob/main/labs/week-11/source/README.md">Run instructions</a>
+    </div>
+  </main>
+  <footer>Version lab-11-submission-v1 · Static portfolio output; no hosted API is implied.</footer>
+</body>
+</html>
