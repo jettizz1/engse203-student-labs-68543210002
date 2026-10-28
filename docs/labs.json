@@ -66,10 +66,9 @@
   {
     "week": "week-05",
     "title": "React Campus Service Request & Data Recovery",
-    "status": "submitted",
+    "status": "ready",
     "sourceOrigin": "https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-05/lab05/starter/src",
     "originalRepoUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-05/lab05/starter",
-    "pullRequestUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/pull/5",
     "submissionTag": "lab-05-submission-v1",
     "testStatus": "pass",
     "notes": "ผ่าน LAB05 checker ครบ 133/133 รายการ ครอบคลุม routing, รายละเอียดคำร้อง, LocalStorage persistence และ data recovery",
@@ -81,14 +80,17 @@
   {
     "week": "week-06",
     "title": "Campus Service Request REST API",
-    "status": "ready",
-    "sourceOrigin": "https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-06/source",
-    "originalRepoUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-06/source",
+    "status": "submitted",
+    "sourceOrigin": "student-created",
+    "originalRepoUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002",
     "testStatus": "pass",
     "notes": "REST API แสดงรายการ/รายละเอียด สร้าง อัปเดตสถานะ และลบคำร้อง พร้อม validation, centralized errors และ JSON persistence; checker ผ่าน 28/28",
-    "pageUrl": "https://jettizz1.github.io/engse203-student-labs-68543210002/labs/week-06/",
+    "pullRequestUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/pull/5",
     "sourceUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-06/source",
-    "hasPublish": false,
+    "submissionTag": "lab-06-submission-v1",
+    "version": "lab-06-submission-v1",
+    "pageUrl": "https://jettizz1.github.io/engse203-student-labs-68543210002/labs/week-06/",
+    "hasPublish": true,
     "sourceEntries": 8
   },
   {
@@ -101,6 +103,8 @@
     "originalRepoUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002",
     "submissionTag": "lab-07-submission-v1",
     "notes": "Runnable React frontend and Express API are in source/. GitHub Pages serves a static showcase only; the Express API must be started separately.",
+    "pullRequestUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/pull/6",
+    "version": "lab-07-submission-v1",
     "pageUrl": "https://jettizz1.github.io/engse203-student-labs-68543210002/labs/week-07/",
     "hasPublish": true,
     "sourceEntries": 7
