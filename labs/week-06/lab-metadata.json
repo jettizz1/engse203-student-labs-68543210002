@@ -1,0 +1,9 @@
+{
+  "week": "week-06",
+  "title": "Campus Service Request REST API",
+  "status": "ready",
+  "sourceOrigin": "https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-06/source",
+  "originalRepoUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-06/source",
+  "testStatus": "pass",
+  "notes": "REST API แสดงรายการ/รายละเอียด สร้าง อัปเดตสถานะ และลบคำร้อง พร้อม validation, centralized errors และ JSON persistence; checker ผ่าน 28/28"
+}
