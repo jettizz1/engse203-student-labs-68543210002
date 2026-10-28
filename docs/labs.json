@@ -118,7 +118,9 @@
     "originalRepoUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002",
     "submissionTag": "lab-09-submission-v1",
     "testStatus": "pass",
-    "notes": "SQLite schema and sample database were executed and checked with Node.js node:sqlite. The submitted SQL includes all required queries, the challenge queries, repeatable seeds, and five live constraint rejection checks. No pull request URL is listed because none was provided.",
+    "notes": "SQLite schema and sample database were executed and checked with Node.js node:sqlite. The submitted SQL includes all required queries, the challenge queries, repeatable seeds, and five live constraint rejection checks.",
+    "pullRequestUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/pull/7",
+    "version": "lab-09-submission-v1",
     "pageUrl": "https://jettizz1.github.io/engse203-student-labs-68543210002/labs/week-09/",
     "hasPublish": true,
     "sourceEntries": 10
