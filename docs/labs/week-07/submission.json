@@ -8,6 +8,8 @@
   "originalRepoUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002",
   "submissionTag": "lab-07-submission-v1",
   "notes": "Runnable React frontend and Express API are in source/. GitHub Pages serves a static showcase only; the Express API must be started separately.",
+  "pullRequestUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/pull/6",
+  "version": "lab-07-submission-v1",
   "pageUrl": "https://jettizz1.github.io/engse203-student-labs-68543210002/labs/week-07/",
   "hasPublish": true,
   "sourceEntries": 7
