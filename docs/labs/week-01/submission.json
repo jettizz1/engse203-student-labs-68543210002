@@ -1,7 +1,7 @@
 {
   "week": "week-01",
   "title": "Developer Environment & GitHub Repository Setup",
-  "status": "ready",
+  "status": "submitted",
   "sourceOrigin": "https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-01/source",
   "originalRepoUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-01",
   "originalCommit": "week-01",
@@ -9,8 +9,8 @@
   "submissionTag": "lab-01-submission-v1",
   "testStatus": "pass",
   "notes": "รัน hello.js และตรวจ environment แล้ว",
-  "pageUrl": "https://jettizz1-github.github.io/engse203-student-labs-68543210002/labs/week-01/",
+  "pageUrl": "https://jettizz1.github.io/engse203-student-labs-68543210002/labs/week-01/",
   "sourceUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-01/source",
   "hasPublish": false,
-  "sourceEntries": 3
+  "sourceEntries": 2
 }

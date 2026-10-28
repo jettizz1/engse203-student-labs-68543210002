@@ -6,7 +6,7 @@
 | รหัสนักศึกษา | 68543210002 |
 | ชื่อ-นามสกุล | คมสันต์ ขันคำกาศ |
 | Section | SEC2 |
-| GitHub Username | jettizz1-github |
+| GitHub Username | jettizz1 |
 | Repository | `engse203-student-labs-68543210002` |
 | Mode | `migration` |
-| Pages Hub | https://jettizz1-github.github.io/engse203-student-labs-68543210002/ |
+| Pages Hub | https://jettizz1.github.io/engse203-student-labs-68543210002/ |
