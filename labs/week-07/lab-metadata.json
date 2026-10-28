@@ -1,11 +1,13 @@
 {
   "week": "week-07",
   "title": "Campus Service Request — React + REST API",
-  "status": "submitted",
+  "status": "ready",
   "testStatus": "pass",
   "sourceOrigin": "student-created",
   "sourceUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-07/source",
   "originalRepoUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002",
   "submissionTag": "lab-07-submission-v1",
-  "notes": "Runnable React frontend and Express API are in source/. GitHub Pages serves a static showcase only; the Express API must be started separately."
+  "notes": "Runnable React frontend and Express API are in source/. GitHub Pages serves a static showcase only; the Express API must be started separately.",
+  "pullRequestUrl": "",
+  "version": "lab-07-submission-v1"
 }
