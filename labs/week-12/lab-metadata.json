@@ -1,9 +1,10 @@
 {
   "week": "week-12",
   "title": "Testing and Debugging",
-  "status": "ready",
+  "status": "submitted",
   "sourceOrigin": "course-starter",
   "pullRequestUrl": "https://github.com/jettizz1/engse203-student-labs-68543210002/pull/11",
+  "submissionTag": "lab-12-submission-v1",
   "testStatus": "pass",
   "notes": "CP44-CP47 pass: 20/20. Static showcase only; the API backend is not deployed. Optional coverage challenge: 76.51% (target 85%)."
 }
