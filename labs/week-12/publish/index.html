@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102a43">
+  <title>Week 12 — Testing and Debugging</title>
+  <style>
+    :root { color-scheme: light; font-family: system-ui, sans-serif; color: #102a43; background: #edf3f8; }
+    body { margin: 0; }
+    main { max-width: 860px; margin: 40px auto; padding: 28px; background: #fff; border-radius: 16px; box-shadow: 0 12px 32px #102a4318; }
+    a { color: #075ea8; }
+    .eyebrow { color: #52677c; font-weight: 700; letter-spacing: .04em; }
+    .result { margin: 24px 0; padding: 18px; border-left: 5px solid #218a57; background: #eef8f1; border-radius: 8px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+    .card { padding: 16px; border: 1px solid #c7d8e6; border-radius: 10px; }
+    .value { font-size: 1.5rem; font-weight: 800; }
+    .muted { color: #52677c; }
+    .links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+    .links a { padding: 10px 14px; border-radius: 8px; background: #1261a6; color: #fff; text-decoration: none; }
+    .links a.secondary { background: #edf3f8; color: #075ea8; }
+    @media (max-width: 600px) { main { margin: 12px; padding: 20px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <a href="../../index.html">← LAB Portfolio</a>
+    <p class="eyebrow">ENGSE203 · LAB 12</p>
+    <h1>Testing and Debugging</h1>
+    <p>ออกแบบ test case, เขียน unit และ integration tests, แก้ข้อผิดพลาด และเพิ่ม regression tests ให้ระบบ Campus Service</p>
+
+    <section class="result" aria-label="ผลการตรวจ">
+      <strong>ผลตรวจ CP44–CP47: ผ่านครบ 20/20 รายการ</strong>
+      <p>API tests 36 ข้อ และ frontend tests 2 ข้อผ่านทั้งหมด</p>
+    </section>
+
+    <section class="grid" aria-label="สรุปผล">
+      <article class="card">
+        <h2>API tests</h2>
+        <p class="value">36 ผ่าน</p>
+        <p class="muted">Unit และ integration tests</p>
+      </article>
+      <article class="card">
+        <h2>Frontend tests</h2>
+        <p class="value">2 ผ่าน</p>
+        <p class="muted">Regression test สำหรับ request summary</p>
+      </article>
+      <article class="card">
+        <h2>Coverage challenge</h2>
+        <p class="value">76.51%</p>
+        <p class="muted">ยังไม่ถึงเป้าหมายเสริม 85%</p>
+      </article>
+    </section>
+
+    <p class="muted">หน้านี้เป็น static showcase บน GitHub Pages; API backend ยังไม่ได้ deploy จึงไม่สามารถบันทึก/โหลดคำร้องแบบ live ได้</p>
+    <nav class="links" aria-label="ลิงก์ผลงาน">
+      <a href="https://github.com/jettizz1/engse203-student-labs-68543210002/tree/main/labs/week-12/source">ดู Source</a>
+      <a class="secondary" href="https://github.com/jettizz1/engse203-student-labs-68543210002">GitHub Repository</a>
+    </nav>
+  </main>
+</body>
+</html>

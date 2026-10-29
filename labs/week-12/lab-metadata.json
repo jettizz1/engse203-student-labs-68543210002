@@ -1,0 +1,8 @@
+{
+  "week": "week-12",
+  "title": "Testing and Debugging",
+  "status": "ready",
+  "sourceOrigin": "course-starter",
+  "testStatus": "pass",
+  "notes": "CP44-CP47 pass: 20/20. Static showcase only; the API backend is not deployed. Optional coverage challenge: 76.51% (target 85%)."
+}
